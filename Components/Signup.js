@@ -91,7 +91,7 @@ const Login = ({ navigation }) => {
           <Text style={{ fontSize: 20, fontFamily: "bold" }}>As a Driver?</Text>
           <Switch
             trackColor={{ false: "#767577", true: "#32cd32" }}
-            thumbColor={isEnabled ? "#4630EB" : "#f4f3f4"}
+            thumbColor={isEnabled ? "#2c9dd1" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
             value={isEnabled}
@@ -204,7 +204,7 @@ const Login = ({ navigation }) => {
 
         <View style={styles.wrapper}>
           <Checkbox
-            color="#4630EB"
+            color="#2c9dd1"
             status={agree ? "checked" : "unchecked"}
             onPress={() => {
               setAgree(!agree);
@@ -219,7 +219,7 @@ const Login = ({ navigation }) => {
           style={[
             styles.buttonStyle,
             {
-              backgroundColor: agree ? "#4630EB" : "grey",
+              backgroundColor: agree ? "#32cd32" : "grey",
             },
           ]}
           disabled={!agree}
@@ -235,7 +235,7 @@ const Login = ({ navigation }) => {
           style={[
             styles.buttonStyle,
             {
-              backgroundColor: "#4630EB",
+              backgroundColor: "#32cd32",
             },
           ]}
           onPress={handleLoginSubmit}
@@ -345,6 +345,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 20,
+    fontFamily: "bold",
     justifyContent: "center",
     alignContent: "center",
     fontWeight: "600",

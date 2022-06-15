@@ -9,6 +9,8 @@ import UpdateProfileDriver from "./Driver/UpdateProfileDriver";
 import CustomerProfile from "./Customer/CustomerProfile";
 import UpdateCustomerProfile from "./Customer/UpdateCustomerProfile";
 import ForgotPassword from "./ForgotPassword";
+import DriverList from "./DriverList/DriverList";
+import WhatsApp from "./Whatsapp";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -43,6 +45,8 @@ const Navigation = () => {
           component={UpdateCustomerProfile}
         />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="DriverList" component={DriverList} />
+        <Stack.Screen name="Whatsapp" component={WhatsApp} />
       </Stack.Navigator>
     </NavigationContainer>
   );

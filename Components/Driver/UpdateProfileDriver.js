@@ -233,7 +233,7 @@ const UpdateProfileDriver = ({ navigation, route }) => {
                   <FontAwesome name="car" color="#777777" size={20} />
                   <TextInput
                     style={styles.textInput}
-                    keyboardType="number-pad"
+                    keyboardType="name-phone-pad"
                     //   onChangeText={(value) => setPassword(value)}
                   />
                 </View>

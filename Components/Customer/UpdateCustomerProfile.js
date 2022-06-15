@@ -142,6 +142,7 @@ const UpdateCustomerProfile = ({ navigation, route }) => {
               <Feather name="user" color="#05375a" size={20} />
               <TextInput
                 style={styles.textInput}
+                autoCapitalize="words"
                 //   onChangeText={(value) => setPassword(value)}
               />
             </View>
@@ -152,6 +153,7 @@ const UpdateCustomerProfile = ({ navigation, route }) => {
               <Feather name="mail" color="#05375a" size={20} />
               <TextInput
                 style={styles.textInput}
+                keyboardType="email-address"
                 //   onChangeText={(value) => setPassword(value)}
               />
             </View>
@@ -162,6 +164,7 @@ const UpdateCustomerProfile = ({ navigation, route }) => {
               <Feather name="phone" color="#05375a" size={20} />
               <TextInput
                 style={styles.textInput}
+                keyboardType="phone-pad"
                 //   onChangeText={(value) => setPassword(value)}
               />
             </View>
@@ -199,6 +202,7 @@ const UpdateCustomerProfile = ({ navigation, route }) => {
               <Feather name="map-pin" color="#05375a" size={20} />
               <TextInput
                 style={styles.textInput}
+                autoCapitalize="words"
                 //   onChangeText={(value) => setPassword(value)}
               />
             </View>

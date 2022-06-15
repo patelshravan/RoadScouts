@@ -1,4 +1,5 @@
 import React from "react";
+import { StatusBar } from "react-native";
 import Login from "./Login";
 import Signup from "./Signup";
 import Home from "./Customer/Home";
@@ -7,6 +8,7 @@ import DriverProfile from "./Driver/DriverProfile";
 import UpdateProfileDriver from "./Driver/UpdateProfileDriver";
 import CustomerProfile from "./Customer/CustomerProfile";
 import UpdateCustomerProfile from "./Customer/UpdateCustomerProfile";
+import ForgotPassword from "./ForgotPassword";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -15,6 +17,7 @@ const Navigation = () => {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
+      <StatusBar backgroundColor="#2c9dd1" />
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
@@ -39,6 +42,7 @@ const Navigation = () => {
           name="UpdateCustomerProfile"
           component={UpdateCustomerProfile}
         />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       </Stack.Navigator>
     </NavigationContainer>
   );

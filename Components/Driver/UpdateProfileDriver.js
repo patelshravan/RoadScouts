@@ -109,6 +109,7 @@ const UpdateProfileDriver = ({ navigation, route }) => {
               <Feather name="user" color="#777777" size={20} />
               <TextInput
                 style={styles.textInput}
+                autoCapitalize="words"
                 //   onChangeText={(value) => setPassword(value)}
               />
             </View>
@@ -119,6 +120,7 @@ const UpdateProfileDriver = ({ navigation, route }) => {
               <Feather name="mail" color="#777777" size={20} />
               <TextInput
                 style={styles.textInput}
+                keyboardType="email-address"
                 //   onChangeText={(value) => setPassword(value)}
               />
             </View>
@@ -129,6 +131,7 @@ const UpdateProfileDriver = ({ navigation, route }) => {
               <Feather name="phone" color="#777777" size={20} />
               <TextInput
                 style={styles.textInput}
+                keyboardType="phone-pad"
                 //   onChangeText={(value) => setPassword(value)}
               />
             </View>
@@ -166,6 +169,7 @@ const UpdateProfileDriver = ({ navigation, route }) => {
               <Feather name="map-pin" color="#777777" size={20} />
               <TextInput
                 style={styles.textInput}
+                autoCapitalize="words"
                 //   onChangeText={(value) => setPassword(value)}
               />
             </View>
@@ -205,6 +209,9 @@ const UpdateProfileDriver = ({ navigation, route }) => {
                   />
                   <TextInput
                     style={styles.textInput}
+                    keyboardType="name-phone-pad"
+                    autoCapitalize="characters"
+                    maxLength={16}
                     //   onChangeText={(value) => setPassword(value)}
                   />
                 </View>
@@ -215,6 +222,7 @@ const UpdateProfileDriver = ({ navigation, route }) => {
                   <FontAwesome name="car" color="#777777" size={20} />
                   <TextInput
                     style={styles.textInput}
+                    autoCapitalize="words"
                     //   onChangeText={(value) => setPassword(value)}
                   />
                 </View>
@@ -225,6 +233,7 @@ const UpdateProfileDriver = ({ navigation, route }) => {
                   <FontAwesome name="car" color="#777777" size={20} />
                   <TextInput
                     style={styles.textInput}
+                    keyboardType="number-pad"
                     //   onChangeText={(value) => setPassword(value)}
                   />
                 </View>

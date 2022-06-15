@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
+  RefreshControl,
   Switch,
-  Alert,
   StyleSheet,
   ScrollView,
   SafeAreaView,
@@ -27,6 +27,10 @@ import AppLoading from "expo-app-loading";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
 const Login = ({ navigation }) => {
   const [agree, setAgree] = useState(false);
   const [name, setName] = useState("");
@@ -37,7 +41,22 @@ const Login = ({ navigation }) => {
   const [city, setCity] = useState("");
   const [pin, setPin] = useState("");
   const [isEnabled, setIsEnabled] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    wait(1000).then(() => setRefreshing(false));
+    setAgree("");
+    setName("");
+    setEmail("");
+    setMobile("");
+    setPassword("");
+    setConfirmPassword("");
+    setCity("");
+    setPin("");
+    setIsEnabled(false);
+  }, []);
 
   let [fontLoaded, error] = useFonts({
     regular: JosefinSans_400Regular,
@@ -53,7 +72,6 @@ const Login = ({ navigation }) => {
 
   const handleSubmit = () => {
     navigation.navigate("Login");
-    return Alert.alert();
   };
 
   const handleLoginSubmit = () => {
@@ -62,7 +80,12 @@ const Login = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         <Text style={styles.mainHeader}>Register</Text>
         <View style={styles.switch}>
           <Text style={{ fontSize: 20, fontFamily: "bold" }}>As a Driver?</Text>
@@ -173,6 +196,7 @@ const Login = ({ navigation }) => {
               autoCapitalize="none"
               keyboardType="number-pad"
               value={pin}
+              maxLength={6}
               onChangeText={(value) => setPin(value)}
             />
           </View>

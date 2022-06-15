@@ -3,12 +3,12 @@ import {
   View,
   RefreshControl,
   Text,
-  Alert,
   StyleSheet,
   Switch,
   ScrollView,
   TextInput,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import { Checkbox } from "react-native-paper";
 import {
@@ -44,6 +44,7 @@ const Login = ({ navigation }) => {
     setAgree("");
     setEmail("");
     setPassword("");
+    setIsEnabled(false);
   }, []);
 
   let [fontLoaded, error] = useFonts({
@@ -64,7 +65,6 @@ const Login = ({ navigation }) => {
     } else {
       navigation.navigate("HomeDriver", { Email: `${email}` });
     }
-    return Alert.alert("Email: " + email, "Password: " + password);
   };
 
   const handleSignupSubmit = () => {
@@ -72,91 +72,101 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
-      style={styles.mainContainer}
-    >
-      <Text style={styles.mainHeader}>Account Login</Text>
-      <View style={styles.switch}>
-        <Text style={{ fontSize: 20, fontFamily: "bold" }}>
-          Are You a Driver?
-        </Text>
-        <Switch
-          trackColor={{ false: "#767577", true: "#32cd32" }}
-          thumbColor={isEnabled ? "#4630EB" : "#f4f3f4"}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.labels}> Enter your email </Text>
-        <View style={styles.action}>
-          <Feather name="mail" color="#05375a" size={20} />
-          <TextInput
-            style={styles.textInput}
-            autoCapitalize="none"
-            value={email}
-            onChangeText={(value) => setEmail(value)}
+    <SafeAreaView style={styles.mainContainer}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+        showsVerticalScrollIndicator={false}
+      >
+        <Text style={styles.mainHeader}>Account Login</Text>
+        <View style={styles.switch}>
+          <Text style={{ fontSize: 20, fontFamily: "bold" }}>
+            Are You a Driver?
+          </Text>
+          <Switch
+            trackColor={{ false: "#767577", true: "#32cd32" }}
+            thumbColor={isEnabled ? "#4630EB" : "#f4f3f4"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
           />
         </View>
-      </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.labels}> Enter your email </Text>
+          <View style={styles.action}>
+            <Feather name="mail" color="#05375a" size={20} />
+            <TextInput
+              style={styles.textInput}
+              autoCapitalize="none"
+              value={email}
+              onChangeText={(value) => setEmail(value)}
+            />
+          </View>
+        </View>
 
-      <View style={styles.inputContainer}>
-        <Text style={styles.labels}> Enter your password </Text>
-        <View style={styles.action}>
-          <Feather name="lock" color="#05375a" size={20} />
-          <TextInput
-            style={styles.textInput}
-            value={password}
-            secureTextEntry={true}
-            onChangeText={(value) => setPassword(value)}
-          />
+        <View style={styles.inputContainer}>
+          <Text style={styles.labels}> Enter your password </Text>
+          <View style={styles.action}>
+            <Feather name="lock" color="#05375a" size={20} />
+            <TextInput
+              style={styles.textInput}
+              value={password}
+              secureTextEntry={true}
+              onChangeText={(value) => setPassword(value)}
+            />
+          </View>
         </View>
-      </View>
-      <View style={styles.wrapper}>
-        <Checkbox
-          color="#4630EB"
-          status={agree ? "checked" : "unchecked"}
+        <View style={styles.wrapper}>
+          <Checkbox
+            color="#4630EB"
+            status={agree ? "checked" : "unchecked"}
+            onPress={() => {
+              setAgree(!agree);
+            }}
+          />
+          <Text style={styles.wrapperText}>
+            {" "}
+            I have read and agreed with the T&C{" "}
+          </Text>
+        </View>
+        <TouchableOpacity
+          style={[
+            styles.buttonStyle,
+            {
+              backgroundColor: agree ? "#4630EB" : "grey",
+            },
+          ]}
+          disabled={!agree}
+          onPress={handleLoginSubmit}
+        >
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => {
-            setAgree(!agree);
+            navigation.navigate("ForgotPassword");
           }}
-        />
-        <Text style={styles.wrapperText}>
-          {" "}
-          I have read and agreed with the T&C{" "}
-        </Text>
-      </View>
-      <TouchableOpacity
-        style={[
-          styles.buttonStyle,
-          {
-            backgroundColor: agree ? "#4630EB" : "grey",
-          },
-        ]}
-        disabled={!agree}
-        onPress={handleLoginSubmit}
-      >
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      <View>
-        <Text style={styles.bottomText1} />
-        <Text style={styles.bottomText2}> Don't have an account? </Text>
-      </View>
-      <TouchableOpacity
-        style={[
-          styles.buttonStyle,
-          {
-            backgroundColor: "#4630EB",
-          },
-        ]}
-        onPress={handleSignupSubmit}
-      >
-        <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity>
-    </ScrollView>
+          style={{ marginTop: 10, alignSelf: "flex-end" }}
+        >
+          <Text style={{ fontFamily: "regular" }}>Forgot Password?</Text>
+        </TouchableOpacity>
+        <View>
+          <Text style={styles.bottomText1} />
+          <Text style={styles.bottomText2}> Don't have an account? </Text>
+        </View>
+        <TouchableOpacity
+          style={[
+            styles.buttonStyle,
+            {
+              backgroundColor: "#4630EB",
+            },
+          ]}
+          onPress={handleSignupSubmit}
+        >
+          <Text style={styles.buttonText}>Register</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
@@ -242,7 +252,6 @@ const styles = StyleSheet.create({
     fontFamily: "regular",
     fontWeight: "bold",
     alignSelf: "center",
-    marginTop: 10,
   },
   bottomText2: {
     marginBottom: 10,
@@ -255,6 +264,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
+    marginBottom: 10,
   },
   buttonText: {
     color: "#fff",

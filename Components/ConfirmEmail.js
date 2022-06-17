@@ -21,10 +21,10 @@ import {
   Montserrat_600SemiBold,
 } from "@expo-google-fonts/montserrat";
 import AppLoading from "expo-app-loading";
-import Feather from "react-native-vector-icons/Feather";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-const ForgotPassword = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+const ConfirmEmail = ({ navigation }) => {
+  const [code, setCode] = useState("");
 
   let [fontLoaded] = useFonts({
     regular: JosefinSans_400Regular,
@@ -40,8 +40,8 @@ const ForgotPassword = ({ navigation }) => {
     return <AppLoading />;
   }
 
-  const onSendPressed = () => {
-    navigation.navigate("NewPassword");
+  const onConfirmPressed = () => {
+    navigation.navigate("Home");
   };
 
   const onResendPress = () => {
@@ -55,18 +55,22 @@ const ForgotPassword = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>Reset Your Password</Text>
+        <Text style={styles.title}>Confirm Your Email</Text>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.labels}> Email </Text>
+          <Text style={styles.labels}> Code </Text>
           <View style={styles.action}>
-            <Feather name="mail" color="#05375a" size={20} />
+            <MaterialCommunityIcons
+              name="message-text-lock-outline"
+              color="#05375a"
+              size={20}
+            />
             <TextInput
               style={styles.textInput}
-              placeholder="Enter Your Email Address"
-              keyboardType="email-address"
-              value={email}
-              onChangeText={(value) => setEmail(value)}
+              placeholder="Enter Your Confirmation Code."
+              keyboardType="number-pad"
+              value={code}
+              onChangeText={(value) => setCode(value)}
             />
           </View>
         </View>
@@ -78,9 +82,30 @@ const ForgotPassword = ({ navigation }) => {
               backgroundColor: "#32cd32",
             },
           ]}
-          onPress={onSendPressed}
+          onPress={onConfirmPressed}
         >
-          <Text style={styles.buttonText}>Send</Text>
+          <Text style={styles.buttonText}>Confirm</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            borderColor: "#32cd32",
+            borderWidth: 2,
+            borderRadius: 15,
+            height: 50,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onPress={onResendPress}
+        >
+          <Text
+            style={{
+              color: "#32cd32",
+              fontSize: 20,
+              fontFamily: "bold",
+            }}
+          >
+            Resend Code
+          </Text>
         </TouchableOpacity>
         <View
           style={{
@@ -143,6 +168,12 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: "regular",
   },
+  bottomText1: {
+    marginBottom: 20,
+    borderBottomWidth: 1.6,
+    borderBottomColor: "#000",
+    width: "100%",
+  },
   buttonStyle: {
     borderRadius: 15,
     height: 50,
@@ -160,4 +191,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPassword;
+export default ConfirmEmail;

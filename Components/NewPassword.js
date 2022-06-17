@@ -21,10 +21,12 @@ import {
   Montserrat_600SemiBold,
 } from "@expo-google-fonts/montserrat";
 import AppLoading from "expo-app-loading";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Feather from "react-native-vector-icons/Feather";
 
-const ForgotPassword = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+const NewPassword = ({ navigation }) => {
+  const [code, setCode] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   let [fontLoaded] = useFonts({
     regular: JosefinSans_400Regular,
@@ -40,12 +42,8 @@ const ForgotPassword = ({ navigation }) => {
     return <AppLoading />;
   }
 
-  const onSendPressed = () => {
-    navigation.navigate("NewPassword");
-  };
-
-  const onResendPress = () => {
-    console.warn("Sent!");
+  const onSubmitPressed = () => {
+    console.warn("Password reset");
   };
 
   const onBackToLoginPress = () => {
@@ -58,15 +56,33 @@ const ForgotPassword = ({ navigation }) => {
         <Text style={styles.title}>Reset Your Password</Text>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.labels}> Email </Text>
+          <Text style={styles.labels}> Code </Text>
           <View style={styles.action}>
-            <Feather name="mail" color="#05375a" size={20} />
+            <MaterialCommunityIcons
+              name="message-text-lock-outline"
+              color="#05375a"
+              size={20}
+            />
             <TextInput
               style={styles.textInput}
-              placeholder="Enter Your Email Address"
-              keyboardType="email-address"
-              value={email}
-              onChangeText={(value) => setEmail(value)}
+              placeholder="Enter Your Confirmation Code"
+              keyboardType="number-pad"
+              value={code}
+              onChangeText={(value) => setCode(value)}
+            />
+          </View>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.labels}> New Password </Text>
+          <View style={styles.action}>
+            <Feather name="lock" color="#05375a" size={20} />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Enter Your New Password"
+              keyboardType="name-phone-pad"
+              value={newPassword}
+              onChangeText={(value) => setNewPassword(value)}
             />
           </View>
         </View>
@@ -78,9 +94,9 @@ const ForgotPassword = ({ navigation }) => {
               backgroundColor: "#32cd32",
             },
           ]}
-          onPress={onSendPressed}
+          onPress={onSubmitPressed}
         >
-          <Text style={styles.buttonText}>Send</Text>
+          <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
         <View
           style={{
@@ -101,6 +117,9 @@ const ForgotPassword = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+export default NewPassword;
+
 const styles = StyleSheet.create({
   mainContainer: {
     height: "100%",
@@ -159,5 +178,3 @@ const styles = StyleSheet.create({
     fontFamily: "bold",
   },
 });
-
-export default ForgotPassword;

@@ -44,7 +44,13 @@ const Home = ({ route, navigation }) => {
             fontSize: 16,
             marginLeft: 10,
           }}
-          style={{ borderWidth: 1, width: 250, borderRadius: 10, height: 30 }}
+          style={{
+            borderWidth: 1,
+            width: 250,
+            borderRadius: 10,
+            height: 30,
+            backgroundColor: "#d3d3d3",
+          }}
           showsVerticalScrollIndicator={false}
         />
       </View>
@@ -59,7 +65,7 @@ const Home = ({ route, navigation }) => {
           <Text
             style={[
               styles.buttonText,
-              { padding: 8, marginLeft: 10, fontFamily: "bold" },
+              { padding: 8, marginLeft: 10, fontFamily: "semiBold" },
             ]}
           >
             Short Distance
@@ -71,7 +77,7 @@ const Home = ({ route, navigation }) => {
                 {
                   padding: 8,
                   marginLeft: 10,
-                  fontFamily: "bold2",
+                  fontFamily: "bold",
                   color: "#32cd32",
                 },
               ]}
@@ -82,7 +88,7 @@ const Home = ({ route, navigation }) => {
               style={{ marginLeft: 150 }}
               name="arrow-right"
               size={25}
-              color="#000"
+              color="#2c9dd1"
             />
           </View>
         </TouchableOpacity>
@@ -97,7 +103,7 @@ const Home = ({ route, navigation }) => {
           <Text
             style={[
               styles.buttonText,
-              { padding: 8, marginLeft: 10, fontFamily: "bold" },
+              { padding: 8, marginLeft: 10, fontFamily: "semiBold" },
             ]}
           >
             Long Distance
@@ -109,7 +115,7 @@ const Home = ({ route, navigation }) => {
                 {
                   padding: 8,
                   marginLeft: 10,
-                  fontFamily: "bold2",
+                  fontFamily: "bold",
                   color: "#32cd32",
                 },
               ]}
@@ -120,7 +126,7 @@ const Home = ({ route, navigation }) => {
               style={{ marginLeft: 150 }}
               name="arrow-right"
               size={25}
-              color="#000"
+              color="#2c9dd1"
             />
           </View>
         </TouchableOpacity>
@@ -135,7 +141,7 @@ const Home = ({ route, navigation }) => {
           <Text
             style={[
               styles.buttonText,
-              { padding: 8, marginLeft: 10, fontFamily: "bold" },
+              { padding: 8, marginLeft: 10, fontFamily: "semiBold" },
             ]}
           >
             Loading
@@ -147,7 +153,7 @@ const Home = ({ route, navigation }) => {
                 {
                   padding: 9,
                   marginLeft: 10,
-                  fontFamily: "bold2",
+                  fontFamily: "bold",
                   color: "#32cd32",
                 },
               ]}
@@ -158,7 +164,7 @@ const Home = ({ route, navigation }) => {
               style={{ marginLeft: 150 }}
               name="arrow-right"
               size={25}
-              color="#000"
+              color="#2c9dd1"
             />
           </View>
         </TouchableOpacity>

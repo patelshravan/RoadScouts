@@ -14,6 +14,7 @@ import { Checkbox } from "react-native-paper";
 import {
   JosefinSans_400Regular,
   JosefinSans_500Medium,
+  JosefinSans_700Bold,
 } from "@expo-google-fonts/josefin-sans";
 import {
   useFonts,
@@ -21,7 +22,7 @@ import {
   Montserrat_400Regular,
   Montserrat_500Medium,
   Montserrat_700Bold,
-  Montserrat_900Black,
+  Montserrat_600SemiBold,
 } from "@expo-google-fonts/montserrat";
 import AppLoading from "expo-app-loading";
 import Feather from "react-native-vector-icons/Feather";
@@ -31,7 +32,6 @@ const wait = (timeout) => {
 };
 
 const Login = ({ navigation }) => {
-  const [agree, setAgree] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [refreshing, setRefreshing] = useState(false);
@@ -41,7 +41,6 @@ const Login = ({ navigation }) => {
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(1000).then(() => setRefreshing(false));
-    setAgree("");
     setEmail("");
     setPassword("");
     setIsEnabled(false);
@@ -50,8 +49,10 @@ const Login = ({ navigation }) => {
   let [fontLoaded, error] = useFonts({
     regular: JosefinSans_400Regular,
     regular2: JosefinSans_500Medium,
+    regularBold: JosefinSans_700Bold,
     Montserrat_400Regular,
     bold: Montserrat_500Medium,
+    semiBold: Montserrat_600SemiBold,
     bold2: Montserrat_700Bold,
   });
 
@@ -93,20 +94,21 @@ const Login = ({ navigation }) => {
           />
         </View>
         <View style={styles.inputContainer}>
-          <Text style={styles.labels}> Enter your email </Text>
+          <Text style={styles.labels}> Email </Text>
           <View style={styles.action}>
             <Feather name="mail" color="#05375a" size={20} />
             <TextInput
               style={styles.textInput}
               autoCapitalize="none"
               value={email}
+              keyboardType="email-address"
               onChangeText={(value) => setEmail(value)}
             />
           </View>
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.labels}> Enter your password </Text>
+          <Text style={styles.labels}> Password </Text>
           <View style={styles.action}>
             <Feather name="lock" color="#05375a" size={20} />
             <TextInput
@@ -117,27 +119,13 @@ const Login = ({ navigation }) => {
             />
           </View>
         </View>
-        <View style={styles.wrapper}>
-          <Checkbox
-            color="#2c9dd1"
-            status={agree ? "checked" : "unchecked"}
-            onPress={() => {
-              setAgree(!agree);
-            }}
-          />
-          <Text style={styles.wrapperText}>
-            {" "}
-            I have read and agreed with the T&C{" "}
-          </Text>
-        </View>
         <TouchableOpacity
           style={[
             styles.buttonStyle,
             {
-              backgroundColor: agree ? "#32cd32" : "grey",
+              backgroundColor: "#32cd32",
             },
           ]}
-          disabled={!agree}
           onPress={handleLoginSubmit}
         >
           <Text style={styles.buttonText}>Login</Text>
@@ -146,25 +134,23 @@ const Login = ({ navigation }) => {
           onPress={() => {
             navigation.navigate("ForgotPassword");
           }}
-          style={{ marginTop: 10, alignSelf: "flex-end" }}
+          style={{ alignSelf: "flex-end" }}
         >
-          <Text style={{ fontFamily: "regular" }}>Forgot Password?</Text>
+          <Text style={{ fontFamily: "regular2" }}>Forgot Password?</Text>
         </TouchableOpacity>
         <View>
           <Text style={styles.bottomText1} />
-          <Text style={styles.bottomText2}> Don't have an account? </Text>
+          <Text style={styles.bottomText2}>
+            {" "}
+            Don't have an account?{" "}
+            <Text
+              style={{ fontWeight: "bold", color: "#32cd32" }}
+              onPress={handleSignupSubmit}
+            >
+              Create One
+            </Text>
+          </Text>
         </View>
-        <TouchableOpacity
-          style={[
-            styles.buttonStyle,
-            {
-              backgroundColor: "#32cd32",
-            },
-          ]}
-          onPress={handleSignupSubmit}
-        >
-          <Text style={styles.buttonText}>Register</Text>
-        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -184,8 +170,8 @@ const styles = StyleSheet.create({
   action: {
     flexDirection: "row",
     marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2",
+    borderBottomWidth: 1.5,
+    borderBottomColor: "#d3d3d3",
     paddingBottom: 5,
   },
   mainHeader: {
@@ -246,24 +232,20 @@ const styles = StyleSheet.create({
   },
   bottomText1: {
     marginBottom: 20,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1.6,
     borderBottomColor: "#000",
     width: "100%",
-    fontFamily: "regular",
-    fontWeight: "bold",
-    alignSelf: "center",
   },
   bottomText2: {
-    marginBottom: 10,
     fontFamily: "bold",
     alignSelf: "center",
   },
   buttonStyle: {
-    borderRadius: 40,
+    borderRadius: 15,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 25,
     marginBottom: 10,
   },
   buttonText: {

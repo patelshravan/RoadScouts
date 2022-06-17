@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   TextInput,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { Checkbox } from "react-native-paper";
 import {
@@ -71,11 +72,15 @@ const Login = ({ navigation }) => {
   }
 
   const handleSubmit = () => {
-    navigation.navigate("Login");
+    navigation.navigate("ConfirmEmail");
   };
 
   const handleLoginSubmit = () => {
     navigation.navigate("Login");
+  };
+
+  const onTCPressed = () => {
+    navigation.navigate("TermsAndConditions");
   };
 
   return (
@@ -86,7 +91,7 @@ const Login = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <Text style={styles.mainHeader}>Register</Text>
+        <Text style={styles.title}>Create an account</Text>
         <View style={styles.switch}>
           <Text style={{ fontSize: 20, fontFamily: "bold" }}>As a Driver?</Text>
           <Switch
@@ -212,7 +217,13 @@ const Login = ({ navigation }) => {
           />
           <Text style={styles.wrapperText}>
             {" "}
-            I have read and agreed with the T&C{" "}
+            I have read and agreed with the{" "}
+            <Text
+              onPress={onTCPressed}
+              style={([styles.wrapperText], { color: "#fdb075" })}
+            >
+              T&C
+            </Text>
           </Text>
         </View>
         <TouchableOpacity
@@ -229,19 +240,17 @@ const Login = ({ navigation }) => {
         </TouchableOpacity>
         <View>
           <Text style={styles.bottomText1} />
-          <Text style={styles.bottomText2}> Already have an account? </Text>
+          <Text style={styles.bottomText2}>
+            {" "}
+            Already have an account?{" "}
+            <Text
+              style={{ fontWeight: "bold", color: "#32cd32" }}
+              onPress={handleLoginSubmit}
+            >
+              Login
+            </Text>
+          </Text>
         </View>
-        <TouchableOpacity
-          style={[
-            styles.buttonStyle,
-            {
-              backgroundColor: "#32cd32",
-            },
-          ]}
-          onPress={handleLoginSubmit}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -261,19 +270,16 @@ const styles = StyleSheet.create({
   action: {
     flexDirection: "row",
     marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2",
+    borderBottomWidth: 1.5,
+    borderBottomColor: "#d3d3d3",
     paddingBottom: 5,
   },
-  mainHeader: {
+  title: {
     fontSize: 25,
-    color: "#344055",
-    fontWeight: "500",
+    color: "#051C60",
     alignSelf: "center",
-    fontFamily: "regular2",
-    paddingTop: 35,
-    paddingBottom: 15,
-    textTransform: "capitalize",
+    fontFamily: "semiBold",
+    margin: 10,
   },
   description: {
     fontSize: 20,
@@ -309,16 +315,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   wrapper: {
-    paddingHorizontal: 10,
-    paddingVertical: 15,
-    paddingBottom: 30,
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    paddingTop: 20,
+    paddingBottom: 20,
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 15,
     alignContent: "center",
   },
   wrapperText: {
-    marginTop: 0,
     fontFamily: "regular",
   },
   bottomText1: {
@@ -336,7 +341,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   buttonStyle: {
-    borderRadius: 40,
+    borderRadius: 15,
     height: 50,
     marginBottom: 10,
     justifyContent: "center",

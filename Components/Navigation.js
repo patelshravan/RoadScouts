@@ -10,7 +10,9 @@ import CustomerProfile from "./Customer/CustomerProfile";
 import UpdateCustomerProfile from "./Customer/UpdateCustomerProfile";
 import ForgotPassword from "./ForgotPassword";
 import DriverList from "./DriverList/DriverList";
-import WhatsApp from "./Whatsapp";
+import ConfirmEmail from "./ConfirmEmail";
+import NewPassword from "./NewPassword";
+import TermAndCond from "./TermAndCond";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -46,7 +48,9 @@ const Navigation = () => {
         />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="DriverList" component={DriverList} />
-        <Stack.Screen name="Whatsapp" component={WhatsApp} />
+        <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
+        <Stack.Screen name="NewPassword" component={NewPassword} />
+        <Stack.Screen name="TermsAndConditions" component={TermAndCond} />
       </Stack.Navigator>
     </NavigationContainer>
   );

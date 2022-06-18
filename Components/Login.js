@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import {
   View,
   RefreshControl,
@@ -9,8 +9,8 @@ import {
   TextInput,
   TouchableOpacity,
   SafeAreaView,
+  Image,
 } from "react-native";
-import { Checkbox } from "react-native-paper";
 import {
   JosefinSans_400Regular,
   JosefinSans_500Medium,
@@ -26,6 +26,7 @@ import {
 } from "@expo-google-fonts/montserrat";
 import AppLoading from "expo-app-loading";
 import Feather from "react-native-vector-icons/Feather";
+import Logo from "../assets/logo.png";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -62,9 +63,9 @@ const Login = ({ navigation }) => {
 
   const handleLoginSubmit = () => {
     if (!isEnabled) {
-      navigation.navigate("Home", { Email: `${email}` });
+      navigation.navigate("Home");
     } else {
-      navigation.navigate("HomeDriver", { Email: `${email}` });
+      navigation.navigate("HomeDriver");
     }
   };
 
@@ -74,6 +75,7 @@ const Login = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
+      <Image style={styles.logo} source={Logo} />
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -162,6 +164,10 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     backgroundColor: "#fff",
   },
+  logo: {
+    width: "100%",
+    height: 100,
+  },
   switch: {
     flex: 1,
     alignItems: "center",
@@ -180,7 +186,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     alignSelf: "center",
     fontFamily: "regular2",
-    paddingTop: 50,
+    paddingTop: 10,
     paddingBottom: 30,
     textTransform: "capitalize",
   },

@@ -53,9 +53,9 @@ const CustomerProfile = ({ navigation }) => {
           />
           <View style={{ marginLeft: 20 }}>
             <Title style={[styles.title, { marginTop: 15, marginBottom: 5 }]}>
-              Shravan
+              Shravan Patel
             </Title>
-            <Caption style={styles.caption}>@patelshravan</Caption>
+            <Caption style={styles.caption}>patelshravan24@gmail</Caption>
           </View>
         </View>
       </View>

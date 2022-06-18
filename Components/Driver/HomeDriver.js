@@ -5,7 +5,7 @@ const Home = ({ route, navigation }) => {
   const updateProfile = () => {
     navigation.navigate("DriverProfile");
   };
-  const { Email } = route.params;
+  const { Email } = "text"; //route.params;
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.mainHeader}>Welcome Captain</Text>

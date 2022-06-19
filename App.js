@@ -1,6 +1,11 @@
 import React from "react";
-import AppStack from "./Components/Navigation/Navigation";
+import { AuthProvider } from "./Components/Context/AuthContext";
+import AppNav from "./Components/Navigation/AppNav";
 
 export default function App() {
-  return <AppStack />;
+  return (
+    <AuthProvider>
+      <AppNav />
+    </AuthProvider>
+  );
 }

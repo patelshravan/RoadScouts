@@ -9,7 +9,6 @@ import {
   SafeAreaView,
   TextInput,
   TouchableOpacity,
-  Pressable,
 } from "react-native";
 import { Checkbox } from "react-native-paper";
 import {

@@ -27,12 +27,14 @@ import {
 import AppLoading from "expo-app-loading";
 import Feather from "react-native-vector-icons/Feather";
 import Logo from "../assets/logo.png";
+import { AuthContext } from "./Context/AuthContext";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
 const Login = ({ navigation }) => {
+  const { Login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [refreshing, setRefreshing] = useState(false);
@@ -62,6 +64,9 @@ const Login = ({ navigation }) => {
   }
 
   const handleLoginSubmit = () => {
+    {
+      Login;
+    }
     if (!isEnabled) {
       navigation.navigate("Home");
     } else {
@@ -75,16 +80,17 @@ const Login = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <Image style={styles.logo} source={Logo} />
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         showsVerticalScrollIndicator={false}
       >
+        {/* <Image style={styles.logo} source={Logo} /> */}
         <Text style={styles.mainHeader}>Account Login</Text>
+
         <View style={styles.switch}>
-          <Text style={{ fontSize: 20, fontFamily: "bold" }}>
+          <Text style={{ fontSize: 20, fontFamily: "bold", color: "#000" }}>
             Are You a Driver?
           </Text>
           <Switch
@@ -132,13 +138,16 @@ const Login = ({ navigation }) => {
         >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("ForgotPassword");
           }}
           style={{ alignSelf: "flex-end" }}
         >
-          <Text style={{ fontFamily: "regular2" }}>Forgot Password?</Text>
+          <Text style={{ fontFamily: "regular2", color: "#000" }}>
+            Forgot Password?
+          </Text>
         </TouchableOpacity>
         <View>
           <Text style={styles.bottomText1} />
@@ -182,7 +191,7 @@ const styles = StyleSheet.create({
   },
   mainHeader: {
     fontSize: 25,
-    color: "#344055",
+    color: "#000",
     fontWeight: "500",
     alignSelf: "center",
     fontFamily: "regular2",

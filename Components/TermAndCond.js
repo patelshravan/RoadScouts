@@ -98,7 +98,7 @@ const TermAndCond = ({ navigation }) => {
             Scotland and Wales.
           </Text>
           <Text style={{ fontFamily: "regular", marginTop: 10 }}>
-            The use of this app is subject to the following terms of use
+            The use of this app is subject to the following terms of use.
           </Text>
         </ScrollView>
 

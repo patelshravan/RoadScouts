@@ -20,11 +20,9 @@ const StackNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: {
-          backgroundColor: "transparent",
-        },
         headerTransparent: true,
         headerTitle: "",
+        headerLeft: null,
       }}
       initialRouteName="Login"
     >

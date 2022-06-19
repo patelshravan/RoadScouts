@@ -4,176 +4,202 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
+  ScrollView,
+  ImageBackground,
+  Dimensions,
 } from "react-native";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import ModalDropdown from "react-native-modal-dropdown";
 
 const options = ["Swaroopganj", "Aburoad", "Sirohi", "Pindwara"];
+const { width, height } = Dimensions.get("window");
 
 const Home = ({ route, navigation }) => {
-  const updateProfile = () => {
-    navigation.navigate("CustomerProfile");
-  };
-
   return (
-    <SafeAreaView style={styles.mainContainer}>
-      <View>
-        <Text
+    <SafeAreaView style={[styles.mainContainer]}>
+      <ScrollView>
+        <View
           style={{
-            paddingTop: 60,
-            fontFamily: "regular",
-            alignSelf: "center",
-            fontSize: 18,
-            paddingBottom: 10,
-          }}
-        >
-          Please Select Your City.
-        </Text>
-        <ModalDropdown
-          options={options}
-          defaultValue="Select Your City..."
-          dropdownStyle={{ width: 250, height: 100 }}
-          dropdownTextStyle={{
-            fontFamily: "regular2",
-            fontSize: 16,
-          }}
-          dropdownTextHighlightStyle={{ color: "#32cd32" }}
-          textStyle={{
-            fontFamily: "regular",
-            fontSize: 16,
-            marginLeft: 10,
-          }}
-          style={{
-            borderWidth: 1,
-            width: 250,
-            borderRadius: 10,
-            height: 30,
-            backgroundColor: "#d3d3d3",
-          }}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
-      <Text style={styles.mainHeader}>Please Select a Category below:</Text>
-      <View style={{ marginBottom: 40 }}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("DriverList");
-          }}
-          style={[styles.buttonStyle]}
-        >
-          <Text
-            style={[
-              styles.buttonText,
-              { padding: 8, marginLeft: 10, fontFamily: "semiBold" },
-            ]}
-          >
-            Short Distance
-          </Text>
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={[
-                styles.buttonText,
-                {
-                  padding: 8,
-                  marginLeft: 10,
-                  fontFamily: "bold",
-                  color: "#32cd32",
-                },
-              ]}
-            >
-              ₹ 20 / km
-            </Text>
-            <Icon
-              style={{ marginLeft: 150 }}
-              name="arrow-right"
-              size={25}
-              color="#2c9dd1"
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={{ marginBottom: 40 }}>
-        <TouchableOpacity
-          style={[styles.buttonStyle]}
-          onPress={() => {
-            navigation.navigate("DriverList");
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            height: 60,
+            width: width,
+            backgroundColor: "#2c9dd1",
           }}
         >
           <Text
-            style={[
-              styles.buttonText,
-              { padding: 8, marginLeft: 10, fontFamily: "semiBold" },
-            ]}
+            style={{
+              alignSelf: "center",
+              fontSize: 18,
+              fontFamily: "regular",
+              margin: 10,
+            }}
           >
-            Long Distance
+            Hello Shravan
           </Text>
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={[
-                styles.buttonText,
-                {
-                  padding: 8,
-                  marginLeft: 10,
-                  fontFamily: "bold",
-                  color: "#32cd32",
-                },
-              ]}
-            >
-              ₹ 50 / km
-            </Text>
-            <Icon
-              style={{ marginLeft: 150 }}
-              name="arrow-right"
-              size={25}
-              color="#2c9dd1"
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <ImageBackground
+              source={require("../../assets/profile.jpg")}
+              style={{ width: 35, height: 35, margin: 10 }}
+              imageStyle={{ borderRadius: 25 }}
             />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={{ marginBottom: 40 }}>
-        <TouchableOpacity
-          style={[styles.buttonStyle]}
-          onPress={() => {
-            navigation.navigate("DriverList");
-          }}
-        >
+          </TouchableOpacity>
+        </View>
+        <View>
           <Text
-            style={[
-              styles.buttonText,
-              { padding: 8, marginLeft: 10, fontFamily: "semiBold" },
-            ]}
+            style={{
+              paddingTop: 20,
+              fontFamily: "regular",
+              alignSelf: "center",
+              fontSize: 18,
+              paddingBottom: 10,
+            }}
           >
-            Loading
+            Please Select Your City.
           </Text>
-          <View style={{ flexDirection: "row" }}>
+          <ModalDropdown
+            options={options}
+            defaultValue="Select Your City..."
+            dropdownStyle={{ width: 250, height: 100 }}
+            dropdownTextStyle={{
+              fontFamily: "regular2",
+              fontSize: 16,
+            }}
+            dropdownTextHighlightStyle={{ color: "#32cd32" }}
+            textStyle={{
+              fontFamily: "regular",
+              fontSize: 16,
+              marginLeft: 10,
+            }}
+            style={{
+              borderWidth: 1,
+              width: 250,
+              borderRadius: 10,
+              alignSelf: "center",
+              height: 30,
+              backgroundColor: "#d3d3d3",
+            }}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+        <Text style={styles.mainHeader}>Please Select a Category below:</Text>
+        <View style={{ marginBottom: 40 }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("DriverList");
+            }}
+            style={[styles.buttonStyle]}
+          >
             <Text
               style={[
                 styles.buttonText,
-                {
-                  padding: 9,
-                  marginLeft: 10,
-                  fontFamily: "bold",
-                  color: "#32cd32",
-                },
+                { padding: 8, marginLeft: 10, fontFamily: "semiBold" },
               ]}
             >
-              ₹ 80 / km
+              Short Distance
             </Text>
-            <Icon
-              style={{ marginLeft: 150 }}
-              name="arrow-right"
-              size={25}
-              color="#2c9dd1"
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View>
-        <TouchableOpacity style={{ marginTop: 100 }} onPress={updateProfile}>
-          <Icon name="user-o" size={25} color="#2c9dd1" />
-        </TouchableOpacity>
-      </View>
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={[
+                  styles.buttonText,
+                  {
+                    padding: 8,
+                    marginLeft: 10,
+                    fontFamily: "bold",
+                    color: "#32cd32",
+                  },
+                ]}
+              >
+                ₹ 20 / km
+              </Text>
+              <Icon
+                style={{ marginLeft: 150 }}
+                name="arrow-right"
+                size={25}
+                color="#2c9dd1"
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{ marginBottom: 40 }}>
+          <TouchableOpacity
+            style={[styles.buttonStyle]}
+            onPress={() => {
+              navigation.navigate("DriverList");
+            }}
+          >
+            <Text
+              style={[
+                styles.buttonText,
+                { padding: 8, marginLeft: 10, fontFamily: "semiBold" },
+              ]}
+            >
+              Long Distance
+            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={[
+                  styles.buttonText,
+                  {
+                    padding: 8,
+                    marginLeft: 10,
+                    fontFamily: "bold",
+                    color: "#32cd32",
+                  },
+                ]}
+              >
+                ₹ 50 / km
+              </Text>
+              <Icon
+                style={{ marginLeft: 150 }}
+                name="arrow-right"
+                size={25}
+                color="#2c9dd1"
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{ marginBottom: 40 }}>
+          <TouchableOpacity
+            style={[styles.buttonStyle]}
+            onPress={() => {
+              navigation.navigate("DriverList");
+            }}
+          >
+            <Text
+              style={[
+                styles.buttonText,
+                { padding: 8, marginLeft: 10, fontFamily: "semiBold" },
+              ]}
+            >
+              Loading
+            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={[
+                  styles.buttonText,
+                  {
+                    padding: 9,
+                    marginLeft: 10,
+                    fontFamily: "bold",
+                    color: "#32cd32",
+                  },
+                ]}
+              >
+                ₹ 80 / km
+              </Text>
+              <Icon
+                style={{ marginLeft: 150 }}
+                name="arrow-right"
+                size={25}
+                color="#2c9dd1"
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -182,14 +208,15 @@ export default Home;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    display: "flex",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   mainHeader: {
-    fontSize: 25,
+    fontSize: 23,
     fontFamily: "regular",
     color: "#123e44",
+    alignSelf: "center",
     marginTop: 50,
     marginBottom: 30,
     textTransform: "capitalize",
@@ -204,6 +231,7 @@ const styles = StyleSheet.create({
     borderColor: "#2c9dd1",
     borderWidth: 2,
     height: 85,
+    alignSelf: "center",
     width: 320,
   },
   dropdown: {

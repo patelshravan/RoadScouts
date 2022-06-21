@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   RefreshControl,
@@ -34,7 +34,6 @@ const wait = (timeout) => {
 };
 
 const Login = ({ navigation }) => {
-  const { Login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [refreshing, setRefreshing] = useState(false);
@@ -64,9 +63,6 @@ const Login = ({ navigation }) => {
   }
 
   const handleLoginSubmit = () => {
-    {
-      Login;
-    }
     if (!isEnabled) {
       navigation.navigate("Home");
     } else {

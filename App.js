@@ -1,11 +1,14 @@
 import React from "react";
-import { AuthProvider } from "./Components/Context/AuthContext";
-import AppNav from "./Components/Navigation/AppNav";
+import AppStack from "./Components/Navigation/DrawerNavigation";
+// import {
+//   Provider as PaperProvider,
+//   DarkTheme as PaperDarkTheme,
+// } from "react-native-paper";
 
 export default function App() {
   return (
-    <AuthProvider>
-      <AppNav />
-    </AuthProvider>
+    // <PaperProvider theme={PaperDarkTheme}>
+    <AppStack />
+    // </PaperProvider>
   );
 }

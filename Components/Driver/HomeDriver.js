@@ -1,27 +1,66 @@
-import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+  Dimensions,
+  ImageBackground,
+  ScrollView,
+  StatusBar,
+} from "react-native";
 import React from "react";
 
-const Home = ({ route, navigation }) => {
-  const updateProfile = () => {
+const { width } = Dimensions.get("window");
+const Home = ({ navigation }) => {
+  const updateProfile = (event) => {
+    event.preventDefault();
     navigation.navigate("DriverProfile");
   };
-  const { Email } = "text"; //route.params;
   return (
-    <View style={styles.mainContainer}>
-      <Text style={styles.mainHeader}>Welcome Captain</Text>
-      <Text style={styles.mainHeader}>{Email}</Text>
-      <TouchableOpacity
-        style={[
-          styles.buttonStyle,
-          {
+    <SafeAreaView style={styles.mainContainer}>
+      <StatusBar backgroundColor="#32cd32" />
+      <ScrollView>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            height: 60,
+            width: width,
             backgroundColor: "#32cd32",
-          },
-        ]}
-        onPress={updateProfile}
-      >
-        <Text style={styles.buttonText}>Profile</Text>
-      </TouchableOpacity>
-    </View>
+          }}
+        >
+          <Text
+            style={{
+              alignSelf: "center",
+              fontSize: 18,
+              fontFamily: "regular",
+              margin: 10,
+            }}
+          >
+            Hello Shravan
+          </Text>
+          <TouchableOpacity onPress={updateProfile}>
+            <ImageBackground
+              source={require("../../assets/profileDriver.jpg")}
+              style={{ width: 35, height: 35, margin: 10 }}
+              imageStyle={{ borderRadius: 25 }}
+            />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={() => {
+              navigation.navigate("RequestPage");
+            }}
+          >
+            <Text style={styles.buttonText}>Requests</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -42,17 +81,19 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
   },
   buttonText: {
-    color: "#fff",
+    color: "#000",
     fontSize: 20,
-    justifyContent: "center",
-    alignContent: "center",
     fontWeight: "600",
+    fontFamily: "semiBold",
   },
   buttonStyle: {
     borderRadius: 40,
+    borderWidth: 2,
+    borderColor: "#2c9dd1",
     height: 50,
-    width: "70%",
+    width: "80%",
     justifyContent: "center",
+    alignSelf: "center",
     alignItems: "center",
     marginTop: 20,
   },

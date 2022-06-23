@@ -78,7 +78,7 @@ const DriverList = ({ navigation }) => {
                       openWhatsAppScreen({ mobileNumber: data.mobile });
                     }}
                   >
-                    <FontAwesome name="whatsapp" size={25} color="#128C7E" />
+                    <FontAwesome name="whatsapp" size={25} color="#32cd32" />
                   </TouchableOpacity>
                 </View>
               </View>

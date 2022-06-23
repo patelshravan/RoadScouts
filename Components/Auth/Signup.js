@@ -89,6 +89,7 @@ const Login = ({ navigation }) => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        keyboardShouldPersistTaps="handled"
       >
         <Text style={styles.title}>Create an account</Text>
         <View style={styles.switch}>

@@ -2,18 +2,17 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "react-native";
 
-import Signup from "../Signup";
-import Login from "../Login";
-import Home from "../Customer/Home";
+import Signup from "../Auth/Signup";
+import Login from "../Auth/Login";
 import HomeDriver from "../Driver/HomeDriver";
 import DriverProfile from "../Driver/DriverProfile";
 import UpdateProfileDriver from "../Driver/UpdateProfileDriver";
 import CustomerProfile from "../Customer/CustomerProfile";
 import UpdateCustomerProfile from "../Customer/UpdateCustomerProfile";
-import ForgotPassword from "../ForgotPassword";
+import ForgotPassword from "../Auth/ForgotPassword";
 import DriverList from "../DriverList/DriverList";
-import ConfirmEmail from "../ConfirmEmail";
-import NewPassword from "../NewPassword";
+import ConfirmEmail from "../Auth/ConfirmEmail";
+import NewPassword from "../Auth/NewPassword";
 import TermAndCond from "../TermAndCond";
 import Requests from "../Driver/Requests";
 const Stack = createStackNavigator();
@@ -27,10 +26,8 @@ const StackNavigation = () => {
           headerTitle: "",
           headerLeft: null,
         }}
-        initialRouteName="Login"
       >
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="CustomerProfile" component={CustomerProfile} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />

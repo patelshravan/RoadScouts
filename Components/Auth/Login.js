@@ -9,7 +9,6 @@ import {
   TextInput,
   TouchableOpacity,
   SafeAreaView,
-  Image,
 } from "react-native";
 import {
   JosefinSans_400Regular,
@@ -18,7 +17,6 @@ import {
 } from "@expo-google-fonts/josefin-sans";
 import {
   useFonts,
-  Montserrat_300Light,
   Montserrat_400Regular,
   Montserrat_500Medium,
   Montserrat_700Bold,
@@ -26,8 +24,7 @@ import {
 } from "@expo-google-fonts/montserrat";
 import AppLoading from "expo-app-loading";
 import Feather from "react-native-vector-icons/Feather";
-import Logo from "../assets/logo.png";
-import { AuthContext } from "./Context/AuthContext";
+// import Logo from "../../assets/logo.png";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -81,8 +78,8 @@ const Login = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
-        {/* <Image style={styles.logo} source={Logo} /> */}
         <Text style={styles.mainHeader}>Account Login</Text>
 
         <View style={styles.switch}>

@@ -19,34 +19,6 @@ const Home = ({ route, navigation }) => {
   return (
     <SafeAreaView style={[styles.mainContainer]}>
       <ScrollView>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 20,
-            height: 60,
-            width: width,
-            backgroundColor: "#2c9dd1",
-          }}
-        >
-          <Text
-            style={{
-              alignSelf: "center",
-              fontSize: 18,
-              fontFamily: "regular",
-              margin: 10,
-            }}
-          >
-            Hello Shravan
-          </Text>
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assets/profile.jpg")}
-              style={{ width: 35, height: 35, margin: 10 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-        </View>
         <View>
           <Text
             style={{

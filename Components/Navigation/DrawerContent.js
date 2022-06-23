@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ImageBackground, Image } from "react-native";
+import { View, StyleSheet, Share, Image, Linking } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import {
   // useTheme,
   Drawer,
@@ -7,7 +8,11 @@ import {
   TouchableRipple,
   Switch,
 } from "react-native-paper";
-import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import {
+  DrawerContentScrollView,
+  DrawerItem,
+  DrawerItemList,
+} from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -27,6 +32,7 @@ import {
 import AppLoading from "expo-app-loading";
 
 const DrawerContent = (props) => {
+  const navigation = useNavigation();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   // const paperTheme = useTheme();
   let [fontLoaded, error] = useFonts({
@@ -43,22 +49,42 @@ const DrawerContent = (props) => {
     return <AppLoading />;
   }
 
+  const onShare = async () => {
+    try {
+      const result = await Share.share(
+        {
+          subject: "RoadScouts",
+          title: "A Transportation App.",
+          message:
+            "Hey, Download this app and get a awesome discount on your first ride!\n https://play.google.com/store/apps/details?id=com.whatsapp&hl=en_IN&gl=US",
+          // url: "https://play.google.com/store/apps/details?id=com.whatsapp&hl=en_IN&gl=US",
+        },
+        {
+          // Android
+          dialogTitle: "Share RoadScouts App ",
+          // IOS
+          excludedActivityTypes: [],
+        }
+      );
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+        } else {
+        }
+      } else if (result.action === Share.dismissedAction) {
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
   };
 
   return (
     <View style={{ flex: 1 }}>
-      <DrawerContentScrollView
-        {...props}
-        // contentContainerStyle={{
-        //   backgroundColor: "#8200d6",
-        // }}
-      >
-        <ImageBackground
-          source={require("../../assets/menu-bg.jpeg")}
-          style={{ padding: 10 }}
-        >
+      <DrawerContentScrollView {...props}>
+        <Drawer.Section style={styles.drawerSection}>
           <View style={{ flexDirection: "row", marginTop: 15 }}>
             <Image
               source={require("../../assets/profile.jpg")}
@@ -67,6 +93,7 @@ const DrawerContent = (props) => {
                 width: 80,
                 borderRadius: 40,
                 marginBottom: 10,
+                marginLeft: 10,
               }}
             />
             <View
@@ -80,43 +107,10 @@ const DrawerContent = (props) => {
               <Text style={styles.caption}>patelshravan24@gmail</Text>
             </View>
           </View>
-        </ImageBackground>
+        </Drawer.Section>
         <View style={styles.drawerContent}>
           <Drawer.Section style={styles.drawerSection}>
-            <DrawerItem
-              icon={({ color, size }) => (
-                <Icon name="home-outline" color={color} size={size} />
-              )}
-              label="Home"
-              onPress={() => {
-                props.navigation.navigate("Home");
-              }}
-            />
-            <DrawerItem
-              icon={({ color, size }) => (
-                <Icon name="account-outline" color={color} size={size} />
-              )}
-              label="Profile"
-              onPress={() => {
-                props.navigation.navigate("CustomerProfile");
-              }}
-            />
-            <DrawerItem
-              icon={({ color, size }) => (
-                <Ionicons name="settings-outline" color={color} size={size} />
-              )}
-              label="Settings"
-              onPress={() => {}}
-            />
-            <DrawerItem
-              icon={({ color, size }) => (
-                <Icon name="clipboard-list-outline" color={color} size={size} />
-              )}
-              label="Drivers List"
-              onPress={() => {
-                props.navigation.navigate("DriverList");
-              }}
-            />
+            <DrawerItemList {...props} />
           </Drawer.Section>
           <Drawer.Section title="Preferences">
             <TouchableRipple
@@ -141,9 +135,7 @@ const DrawerContent = (props) => {
             <Ionicons name="share-social-outline" color={color} size={size} />
           )}
           label="Tell a friend"
-          onPress={() => {
-            // signOut();
-          }}
+          onPress={onShare}
         />
         <DrawerItem
           icon={({ color, size }) => (
@@ -151,7 +143,7 @@ const DrawerContent = (props) => {
           )}
           label="Sign Out"
           onPress={() => {
-            // signOut();
+            navigation.navigate("Login");
           }}
         />
       </Drawer.Section>
@@ -172,13 +164,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 3,
     fontFamily: "regular",
-    color: "#fff",
   },
   caption: {
     fontSize: 14,
     lineHeight: 14,
     fontFamily: "regular",
-    color: "#d3d3d3",
   },
   row: {
     marginTop: 20,
